@@ -49,7 +49,7 @@
 
 .DEFINE PARAM_SONG = $808000
 	.dw	$0002
-.DEFINE PARAM_SONG_2 = $808002
+.DEFINE PARAM_SONG_TYPE = $808002
 	.dw	$0000
 .DEFINE PARAM_RESERVED_1 = $808004
 	.dw	$0000
@@ -134,8 +134,10 @@ loc_WaitDspInit:
 	bcc	loc_WaitDspInit
 
 loc_PlaySound:
-	lda	PARAM_SONG
-	bmi	loc_PlaySFX
+	lda	PARAM_SONG_TYPE
+	beq	loc_PlayBGM
+	bpl	loc_PlaySFX
+	bmi	loc_PlayVoice
 
 loc_PlayBGM:
 	; request BGM playback
@@ -144,24 +146,21 @@ loc_PlayBGM:
 	asl	a
 	jsl	$80c425
 
-	bra loc_EnterMainLoop
+	bra	loc_EnterMainLoop
 
 loc_PlaySFX:
-	and	#$ff
-	bne	loc_PlaySFX_2
-
 	; request SFX playback
-	lda	PARAM_SONG_2
-	jsl	$80c39e
-
-	bra loc_EnterMainLoop
-
-loc_PlaySFX_2:
-	; request SFX playback
-	lda	PARAM_SONG_2
+	lda	PARAM_SONG
 	asl	a
 	asl	a
 	jsl	$80c2f5
+
+	bra loc_EnterMainLoop
+
+loc_PlayVoice:
+	; request sampled SFX playback
+	lda	PARAM_SONG
+	jsl	$80c39e
 
 loc_EnterMainLoop:
 	lda	#0
