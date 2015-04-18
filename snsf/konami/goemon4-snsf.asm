@@ -137,7 +137,6 @@ loc_PlayBGM:
 	lda	PARAM_SONG
 	asl	a
 	asl	a
-	tay
 	jsl	$80da63
 
 	bra	loc_EnterMainLoop
