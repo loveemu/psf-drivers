@@ -55,6 +55,8 @@
 .DEFINE PARAM_RESERVED_2 = $C00006
 	.dw	$0000
 
+.BASE $C0
+
 ; setup routine derived from the original setup ($00/FF98)
 Start:
 	sep	#$20
@@ -109,7 +111,7 @@ StartStub:
 	clc
 	xce
 	cld
-	jml	$C00000 + Start
+	jml	Start
 
 EmptyHandler:
 	rti

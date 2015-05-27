@@ -27,7 +27,7 @@
   COP EmptyHandler
   BRK EmptyHandler
   ABORT EmptyHandler
-  NMI VBlank
+  NMI VBlankEntry
   IRQ EmptyHandler
 .ENDNATIVEVECTOR
 
@@ -35,7 +35,7 @@
   COP EmptyHandler
   ABORT EmptyHandler
   NMI EmptyHandler
-  RESET Start
+  RESET StartEntry
   IRQBRK EmptyHandler
 .ENDEMUVECTOR
 
@@ -57,6 +57,8 @@
 	.dw	$0000
 
 .DEFINE FrameCount = $7E004A
+
+.BASE $80
 
 ; setup routine derived from the original setup ($80/8000)
 Start:
@@ -216,7 +218,20 @@ VBlank:
 	pla
 	rti
 
+.ENDS
+
+.ORG $7F90
+.SECTION "INTR" SEMIFREE
+StartEntry:
+	sei
+	clc
+	xce
+	jml	Start
+
+VBlankEntry:
+	jml	VBlank
+
 EmptyHandler:
-	RTI
+	rti
 
 .ENDS
