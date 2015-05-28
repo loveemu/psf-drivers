@@ -53,7 +53,7 @@
 	.db	$00
 .DEFINE PARAM_SONG_TYPE = $008002
 	.db	$00
-.DEFINE PARAM_APU1 = $008003
+.DEFINE PARAM_SONG_FLAGS = $008003
 	.db	$00
 .DEFINE PARAM_RESERVED = $008004
 	.dw	$0000
@@ -84,25 +84,6 @@ Start:
 	; set stack pointer
 	lda	#$1ff
 	tcs
-
-	; zero high RAM bank
-	lda	#$f0a9
-	sta	$7f8000
-	ldx	#$17d
-	ldy	#$3fd
-
-loc_ZeroMemory:
-	lda	#$8d
-	sta	$7f8002, x
-	tya
-	sta	$7f8003, x
-	sec
-	sbc	#4
-	tay
-	dex
-	dex
-	dex
-	bpl	loc_ZeroMemory
 
 	sep	#$30
 
@@ -145,10 +126,25 @@ SetupSound:
 	ldy	PARAM_SONG_TYPE
 	jsr	PlaySound
 
-	; write APU port 1
-	lda	PARAM_APU1
+	; additional effects
+	lda	PARAM_SONG_FLAGS
+	bit	#1
+	beq	loc_TestSongFlag2
+
+	; turn off Yoshi Drum channel
+	lda	#3
 	sta	$1dfa
 
+loc_TestSongFlag2:
+	lda	PARAM_SONG_FLAGS
+	bit	#2
+	beq	loc_TestSongFlag3
+
+	; Time is running out!
+	lda	#$80
+	sta	$1df9
+
+loc_TestSongFlag3:
 	rts
 
 LoadMusicSet:
@@ -174,6 +170,14 @@ PlaySound:
 
 	; write APU port shadow
 	sta	$1df9, y
+
+	; turn on Yoshi Drum channel if BGM
+	cpy	#2
+	bne	loc_PlaySoundEnd
+	lda	#2
+	sta	$1dfa
+
+loc_PlaySoundEnd:
 	rts
 
 byte_APUPortIndexes:
@@ -181,6 +185,7 @@ byte_APUPortIndexes:
 	.db	2	; BGM
 	.db	0	; SFX 1
 	.db	3	; SFX 2
+	.db	1	; misc
 
 VBlank:
 	sei
