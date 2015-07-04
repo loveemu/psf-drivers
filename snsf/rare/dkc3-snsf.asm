@@ -50,7 +50,7 @@
 	.dw	$0016
 .DEFINE PARAM_SONG_TYPE = $808002
 	.dw	$0000
-.DEFINE PARAM_RESERVED = $808004
+.DEFINE PARAM_SONG_PRELOAD = $808004
 	.dw	$0000
 .DEFINE PARAM_RESERVED_2 = $808006
 	.dw	$0000
@@ -113,24 +113,43 @@ loc_PlaySound:
 	bpl	loc_PlaySFX
 
 loc_PlayBGM:
-	; request BGM playback
+;	; request BGM playback (immediate)
+;	jsl	$b28009
+
+	; transfer BGM data
 	lda	PARAM_SONG
-	jsl	$b28009
+	and	#$ff
+	jsl	$b28003
+
+	; request BGM playback
+	lda	PARAM_SONG+1
+	and	#$ff
+	jsl	$b2800f
 
 	bra	loc_MainLoop
 
 loc_PlaySFX:
-;	; setup SFX request monitor
-;	lda	PARAM_SONG_PRELOAD
-;	jsl	$b28009
-;
-;	; request SFX playback
-;	lda	PARAM_SONG
-;	jsl	$b28012
+	; transfer BGM data
+	lda	PARAM_SONG_PRELOAD
+	beq	loc_PlaySFXImm
+	and	#$ff
+	jsl	$b28003
 
-	; request SFX playback (immediate)
+	; request BGM playback
+	lda	PARAM_SONG_PRELOAD+1
+	and	#$ff
+	jsl	$b2800f
+
+	; TODO: mute BGM
+
+loc_PlaySFXImm:
+	; request SFX playback
 	lda	PARAM_SONG
-	jsl	$b28018
+	jsl	$b28012
+
+;	; request SFX playback (without queue)
+;	lda	PARAM_SONG
+;	jsl	$b28018
 
 loc_MainLoop:
 	wai
@@ -147,13 +166,16 @@ VBlank:
 	sep	#$20
 	lda	$004210
 
+	; increment counter for SFXs (origin $808344)
+	inc	$00
+
 	; increment framecount
 ;	lda FrameCount
 ;	inc a
 ;	sta FrameCount
 
-;	; dispatch SFX requests
-;	jsl	$b28015
+	; dispatch SFX requests
+	jsl	$b28015
 
 	rep	#$30
 	ply
