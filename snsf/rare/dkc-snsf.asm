@@ -10,7 +10,7 @@
  SRAMSIZE $01
  COUNTRY $01
  LICENSEECODE $33
- VERSION $02
+ VERSION $00
 .ENDSNES
 
 .MEMORYMAP
@@ -75,24 +75,38 @@ Start:
 	xce
 	rep	#$30
 
-	; zero memory (note: actual game uses DMA)
-	stz	$00
-	ldx	#$0000
-	ldy	#$0001
-	lda	#$ffff
-	mvn	$7e,$7e
-	phk
-	plb
+	; zero memory ($0000-$1FFF)
+	rep	#$20
+	lda	#$a911  ; point to ".byte 0"
+	sta	$4302   ; DMA source
+	lda	#$80
+	sta	$4304   ; DMA source (bank)
+	stz	$4305   ; DMA byte-counter
+	stz	$2181   ; WRAM address (lower 8bit)
+	sep	#$20
+	stz	$2183   ; WRAM address (upper 8bit)
+	lda	#$80
+	sta	$4301   ; DMA/HDMA I/O-Bus Address
+	lda	#$08
+	sta	$4300   ; DMA params
+	lda	#$01
+	sta	$420b
+	lda	#$01
+	sta	$420b
+
+	; set stack pointers
+	rep	#$20
+	lda	#$1ff
+	tcs
 
 	; transfer SPC program
-	jsl	$8ab0ed
-	jsl	$8ab133
+	jsl	$8ab0e8
+	jsl	$8ab12e
 
-	; setup interrupt
+	; disable interrupt
 	sep	#$20
-	lda	#$81
+	lda	#$01
 	sta	$4200
-	cli
 	rep	#$20
 
 	; transfer waveforms (title logo)
@@ -101,8 +115,15 @@ Start:
 	lda	#$3300
 	sta	$18
 	stz	$1a
-	lda	#$1b
-	jsl	$8ab414
+	lda	#$12
+	jsl	$8ab40f
+
+;	; start transfer
+;	ldx	#$ff
+;	jsl	$8ab1aa
+
+	; start another transfer (related to $8ab3f1)
+	jsl	$80c239
 
 loc_PlaySound:
 	lda	PARAM_SONG_TYPE
@@ -110,37 +131,25 @@ loc_PlaySound:
 	bne	loc_PlaySFX
 
 loc_PlayBGM:
-	; transfer waveforms
-	jsl	$8ab3f6
 	lda	PARAM_SONG
-	jsl	$8ab414
+	jsr	TransferBGMBlock
 
-	; load BGM
-	lda	PARAM_SONG
-	jsl	$8ab1cb
-
-	; start playing
+	; start BGM playback
 	sep	#$20
-	ldx	#$00fe
-	jsl	$8ab1af
+	ldx	#$fe
+	jsl	$8ab1aa
 	rep	#$30
 
-	bra	loc_MainLoop
+	bra	loc_EnterMainLoop
 
 loc_PlaySFX:
-	; transfer waveforms
-	jsl	$8ab3f6
 	lda	PARAM_SONG_PRELOAD
-	jsl	$8ab414
+	jsr	TransferBGMBlock
 
-	; load BGM
-	lda	PARAM_SONG_PRELOAD
-	jsl	$8ab1cb
-
-	; start playing
+	; start BGM playback
 	sep	#$20
-	ldx	#$00fe
-	jsl	$8ab1af
+	ldx	#$fe
+	jsl	$8ab1aa
 	rep	#$30
 
 	; TODO: mute BGM
@@ -148,15 +157,48 @@ loc_PlaySFX:
 	; request SFX playback
 	lda	PARAM_SONG
 	tax
-	jsl	$8ab1af
+	jsl	$8ab1aa
+
+loc_EnterMainLoop:
+	; enable interrupt
+	sep	#$20
+	lda	#$b1
+	sta	$4200
 
 loc_MainLoop:
 	wai
 	bra	loc_MainLoop
 
+TransferBGMBlock:
+	; transfer BGM block (reference: $b99036)
+	pha
+	pha
+
+	; disable NMI
+;	sep	#$20
+;	lda	#$01
+;	sta	$4200
+;	rep	#$20
+
+	; start transfer
+;	sep	#$20
+;	ldx	#$ff
+;	jsl	$8ab1aa
+
+	; transfer waveforms
+	pla
+	jsl	$8ab40f
+
+	; end transfer
+	pla
+	jsl	$8ab1c6
+
+	rts
+
 VBlank:
 	; NMI
 	rep	#$30
+	phb
 	phd
 	pha
 	phx
@@ -171,9 +213,10 @@ VBlank:
 	plx
 	pla
 	pld
+	plb
 	rti
 
 EmptyHandler:
-	RTI
+	rti
 
 .ENDS
