@@ -56,8 +56,10 @@
 	.dw	$0003
 .DEFINE PARAM_BRR_BANK = $c00004
 	.dw	$0000
-.DEFINE PARAM_RESERVED = $c00006
-	.dw	$0000
+.DEFINE PARAM_CHAN_MASK = $c00006
+	.db	$00
+.DEFINE PARAM_RESERVED = $c00007
+	.db	$00
 
 StartC0:
 	jml	Start
@@ -117,10 +119,15 @@ Main:
 	jsl	$80dee1
 
 	; initialize sound variables (required for stereo setup)
-	jsl	$c01c32
+	;jsl	$c01c32
 
 	; transfer APU executable
-	jsr	$1edb
+	;jsr	$1edb
+	lda	#4
+	jsl	$81852a
+	; stereo mode
+	lda	#1
+	jsl	$818858
 
 	; initialize APU transfer
 	jsl	$c01026
@@ -187,6 +194,16 @@ loc_PlayBGM:
 	tax
 	lda	#$ff
 	jsl	$8185e7
+	rep	#$20
+
+	sep	#$20
+	lda	PARAM_CHAN_MASK
+	beq	loc_SkipChanMask
+
+	; channel mask
+	jsl	$818716
+
+loc_SkipChanMask:
 	rep	#$20
 
 	bra	loc_MainLoop
