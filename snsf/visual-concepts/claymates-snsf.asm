@@ -48,12 +48,16 @@
 .EMPTYFILL $FF
 
 .DEFINE PARAM_SONG = $C07E00
-	.dw	$0012
-.DEFINE PARAM_SOUND_BANK = $C07E02
+	.db	$12
+.DEFINE PARAM_SOUND_BANK = $C07E01
+	.db	$00
+.DEFINE PARAM_SONG_TYPE = $C07E02
+	.db	$00
+.DEFINE PARAM_RESERVED_BYTE = $C07E03
+	.db	$00
+.DEFINE PARAM_RESERVED = $C07E04
 	.dw	$0000
-.DEFINE PARAM_SONG_TYPE = $C07E04
-	.dw	$0000
-.DEFINE PARAM_RESERVED = $C07E06
+.DEFINE PARAM_RESERVED_2 = $C07E06
 	.dw	$0000
 
 .BASE $C0
@@ -97,19 +101,23 @@ loc_FillMemory:
 
 	; transfer sample data
 	lda	PARAM_SOUND_BANK
+	and	#$ff
 	jsl	$cd5e72
 
 loc_PlaySound:
 	lda	PARAM_SONG_TYPE
+	and	#$ff
 	bne	loc_PlaySFX
 
 loc_PlayBGM:
 	lda	PARAM_SONG
+	and	#$ff
 	jsl	$cd5f02
 	bra	loc_MainLoop
 
 loc_PlaySFX:
 	lda	PARAM_SONG
+	and	#$ff
 	jsl	$cd5fd1
 
 loc_MainLoop:
