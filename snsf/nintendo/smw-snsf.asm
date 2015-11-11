@@ -1,5 +1,9 @@
 .LOROM
 
+; ## Known Issues
+; 
+; * Slowdown caused by uninitialized vibrato parameter (Castle Level, etc.)
+
 ; Cartridge header should be copied from the original ROM
 .SNESHEADER
 ;ID    "    "
