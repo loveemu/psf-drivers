@@ -50,8 +50,10 @@
 	.db	$18
 .DEFINE PARAM_SONG_TYPE = $c00001
 	.db	$00
-.DEFINE PARAM_RESERVED_0 = $c00002
-	.dw	$0000
+.DEFINE PARAM_SONG_PRELOAD = $c00002
+	.db	$00
+.DEFINE PARAM_SONG_PRELOAD_FRAMES = $c00003
+	.dw	$00
 .DEFINE PARAM_RESERVED_1 = $c00004
 	.dw	$0000
 .DEFINE PARAM_RESERVED_2 = $c00006
@@ -162,6 +164,19 @@ loc_InitSound:
 	lda	#$ff
 	sta	$7fff10
 	sta	$7fff11
+
+	; request BGM playback for echo initialization
+	lda	PARAM_SONG_PRELOAD
+	beq	loc_PlaySound
+	jsl	$c04d1b
+
+	lda	PARAM_SONG_PRELOAD_FRAMES
+
+loc_PreloadWAI:
+	beq	loc_PlaySound
+	wai
+	dec	a
+	bra	loc_PreloadWAI
 
 loc_PlaySound:
 	lda	PARAM_SONG_TYPE
