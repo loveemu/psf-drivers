@@ -54,8 +54,10 @@
 	.db	$00
 .DEFINE PARAM_SONG_PRELOAD_FRAMES = $c00003
 	.dw	$00
-.DEFINE PARAM_RESERVED_1 = $c00004
-	.dw	$0000
+.DEFINE PARAM_SONG_SUB = $c00004
+	.db	$00
+.DEFINE PARAM_RESERVED_1 = $c00005
+	.db	$00
 .DEFINE PARAM_RESERVED_2 = $c00006
 	.dw	$0000
 
@@ -186,6 +188,11 @@ loc_PlayBGM:
 	; request BGM playback
 	lda	PARAM_SONG
 	jsl	$c04d1b
+
+	; request song number change
+	lda	PARAM_SONG_SUB
+	beq	loc_MainLoop
+	jsl	$c04e32
 
 	bra	loc_MainLoop
 
