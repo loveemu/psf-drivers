@@ -55,7 +55,7 @@ regs = [
     (0x40000d4, "DMA3SAD", "DMA 3 Source Address"),
     (0x40000d8, "DMA3DAD", "DMA 3 Destination Address"),
     (0x40000dc, "DMA3CNT_L", "DMA 3 Word Count"),
-    (0x40000dc, "DMA3CNT_H", "DMA 3 Control"),
+    (0x40000de, "DMA3CNT_H", "DMA 3 Control"),
     (0x40000e0, "DMA0FILL", "DMA 0 Filldata"),
     (0x40000e4, "DMA1FILL", "DMA 1 Filldata"),
     (0x40000e8, "DMA2FILL", "DMA 2 Filldata"),
