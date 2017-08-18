@@ -1,0 +1,64 @@
+Super Princess Peach (U) 2SF Driver
+===================================
+
+## Driver Block Outline
+
+~~~~
+	; some basic setup...
+
+loc_2000BDC:
+	; initialize sound
+	bl #0x2014150
+
+	; disable vblank irq
+	mov r0, #0
+	bl #0x2093584
+
+	; bgm playback request
+	ldr r0, var_SongNumber
+	mov r1, #0
+	bl #0x2014044
+
+	; more setups
+	mov r0, #1
+	bl #0x20141dc
+
+	; enable vblank
+	mov r0, #1
+	bl #0x2093584
+
+loc_MainLoop:
+	; main for sound
+	bl #0x2014010
+
+	; wait for vblank
+	blx #0x200072a
+
+	b loc_MainLoop
+
+var_SongNumber:
+	dcd	0x190
+~~~~
+
+## ROM Map
+
+* 0x200072A: Wait for V-Blank function.
+* 0x20018F8: Memory_InitHeap function.
+* 0x20017C4: Memory_CreateHeap function.
+* 0x2001724: Memory_DestroyHeap function.
+* 0x20018F8: Memory_Init function.
+* 0x200C8F4: Something like operator new(size).
+* 0x200CF34: Something like operator new[](count, size, offset, initializer).
+* 0x2013FD0: Start SFX playback(song, 0).
+* 0x2014010: Sound main routine called from main loop.
+* 0x2014044: Start BGM playback(song, 0).
+* 0x2014150: Initialize sound and transfer the common sound data.
+* 0x20141DC: Another setup for sound. (r0=1)
+* 0x20137D0: Initialize on scene start.
+* 0x2093584: Set V-Blank enabled/disabled function(bool).
+* 0x20935B4: Set H-Blank enabled/disabled function(bool).
+* 0x20963E8: Write to IPC FIFO.
+* 0x20Cxxxx: Various sound routines.
+* 0x20C90B0: Initialize sound.
+* 0x20CA214: Transfer common sound data.
+* 0x214656C: Debug print function(str).
