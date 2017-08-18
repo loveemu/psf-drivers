@@ -1,0 +1,12 @@
+Yu-Gi-Oh! Duel Monsters International (J) GSF Driver
+====================================================
+
+* sub_8089750 (initialize)
+    - Put the music playback function call at the bottom of function. Example:
+      ~~~~
+      mov r0, #0        ; song number (16-bit value)
+      bl #0x808be0c     ; request music playback
+      ~~~~
+* sub_80896cc (main loop)
+    - 080896f4: `bl #0x8089610` -> `bl #0x8093ee0` (replace one of the core function by its sub-function related to music)
+    - NOP-out some other function calls
