@@ -1,0 +1,258 @@
+Soma Bringer (J) 2SF Driver
+===========================
+
+## File System
+
+Soma Bringer contains only one file, name of data.srl.
+SRL file is a standard archive format, which is actually a NitroROM cartridge format.
+
+Therefore, you can extract files by following steps.
+
+1. Open the ROM by [Tinke](https://github.com/pleonex/tinke) and extract data.srl
+2. Open data.srl by Tinke and extract files you like
+
+### Sound Files
+
+* data/img/snd.img - archive for VS001820.SED and VS001820.SWD?
+* data/img/snd.fat
+* data/snd/bg/B01.mus
+* data/snd/bg/B02.mus
+* data/snd/bg/B03.mus
+* data/snd/bg/B04.mus
+* data/snd/bg/B05.mus
+* data/snd/bg/C01.mus
+* data/snd/bg/C02.mus
+* data/snd/bg/C03.mus
+* data/snd/bg/C04.mus
+* data/snd/bg/C05.mus
+* data/snd/bg/C06.mus
+* data/snd/bg/C07.mus
+* data/snd/bg/D01.mus
+* data/snd/bg/D02.mus
+* data/snd/bg/D03.mus
+* data/snd/bg/D04.mus
+* data/snd/bg/D05.mus
+* data/snd/bg/D06.mus
+* data/snd/bg/D07.mus
+* data/snd/bg/D08.mus
+* data/snd/bg/D09.mus
+* data/snd/bg/E04.mus
+* data/snd/bg/E05.mus
+* data/snd/bg/E06.mus
+* data/snd/bg/E07.mus
+* data/snd/bg/E08.mus
+* data/snd/bg/E09.mus
+* data/snd/bg/E10.mus
+* data/snd/bg/E11.mus
+* data/snd/bg/E13.mus
+* data/snd/bg/E14.mus
+* data/snd/bg/E16.mus
+* data/snd/bg/E17.mus
+* data/snd/bg/E18.mus
+* data/snd/bg/E19.mus
+* data/snd/bg/E20.mus
+* data/snd/bg/E21.mus
+* data/snd/bg/E22.mus
+* data/snd/bg/E23.mus
+* data/snd/bg/E24.mus
+* data/snd/bg/E26.mus
+* data/snd/bg/E31.mus
+* data/snd/bg/F01.mus
+* data/snd/bg/F02.mus
+* data/snd/bg/F03.mus
+* data/snd/bg/F04.mus
+* data/snd/bg/F05.mus
+* data/snd/bg/F06.mus
+* data/snd/bg/W01.mus
+* data/snd/bg/W02.mus - Title
+* data/snd/bg/W03.mus - Menu
+* data/snd/bg/W04.mus
+* data/snd/stream/EXCLEAR.SAD
+* data/snd/stream/OPENING.SAD
+* data/snd/stream/S_TITLE.SAD
+
+### Sound File Format
+
+A .MUS file is an archive for SMD (sequence) and SWD (instruments).
+Apparently, the header format looks so easy to guess.
+
+A .SAD file is a streamed sound format. It's an IMA ADPCM. You can play it by vgmstream.
+
+Alright, I focus to only the sequenced format here.
+
+## ROM/RAM Map
+
+### ARM9 Library Functions
+
+|Function name                   |Start    |
+|--------------------------------|---------|
+|OS_VSNPrintf                    |020035C4 |
+|OS_VSPrintf                     |0200362C |
+|OS_SNPrintf                     |02003644 |
+|OS_SPrintf                      |0200366C |
+|STD_GetStringLength             |020037C8 |
+|STD_CopyString                  |020037E4 |
+|STD_CopyNString                 |020038AC |
+|STD_ConcatenateString           |020038FC |
+|STD_CompareString               |0200392C |
+|STD_CompareNString              |02003A40 |
+|STD_SearchString                |02003AF8 |
+|FSi_ReleaseCommand              |0200D090 |
+|FSi_TranslateCommand            |0200D0EC |
+|FSi_StrNICmp                    |0200D27C |
+|FSi_ReadTable                   |0200D2CC |
+|FSi_SeekDirDirect               |0200D38C |
+|FSi_ReadFileCommand             |0200D3C0 |
+|FSi_WriteFileCommand            |0200D3EC |
+|FSi_SeekDirCommand              |0200D418 |
+|FSi_ReadDirCommand              |0200D4B0 |
+|FSi_FindPathCommand             |0200D5DC |
+|FSi_GetPathCommand              |0200D7C0 |
+|FSi_OpenFileFastCommand         |0200DB6C |
+|FSi_OpenFileDirectCommand       |0200DBEC |
+|FSi_CloseFileCommand            |0200DC14 |
+|FSi_GetPackedName               |0200DC1C |
+|FSi_ReadMemCallback             |0200DC74 |
+|FSi_WriteMemCallback            |0200DC90 |
+|FSi_ReadMemoryCore              |0200DCB0 |
+|FSi_NextCommand                 |0200DCC8 |
+|FSi_ExecuteAsyncCommand         |0200DEDC |
+|FSi_ExecuteSyncCommand          |0200DF70 |
+|FSi_SendCommand                 |0200DFB4 |
+|FS_InitArchive                  |0200E158 |
+|FS_FindArchive                  |0200E184 |
+|FS_RegisterArchiveName          |0200E1C4 |
+|FS_LoadArchive                  |0200E278 |
+|FS_LoadArchiveTables            |0200E2E8 |
+|FS_SuspendArchive               |0200E40C |
+|FS_ResumeArchive                |0200E4A8 |
+|FS_SetArchiveProc               |0200E518 |
+|FS_NotifyArchiveAsyncEnd        |0200E538 |
+|FS_Init                         |0200E5BC |
+|FS_InitFile                     |0200E5E4 |
+|FSi_FindPath                    |0200E60C |
+|FSi_ReadFileCore                |0200E750 |
+|FSi_WriteFileCore               |0200E7CC |
+|FS_ConvertPathToFileID          |0200E848 |
+|FS_OpenFileDirect               |0200E888 |
+|FS_OpenFileFast                 |0200E8D0 |
+|FS_OpenFile                     |0200E940 |
+|FS_CloseFile                    |0200E988 |
+|FS_WaitAsync                    |0200E9C4 |
+|FS_ReadFileAsync                |0200EA84 |
+|FS_ReadFile                     |0200EA94 |
+|FS_WriteFile                    |0200EAA4 |
+|FS_SeekFile                     |0200EAB4 |
+|FS_SeekDir                      |0200EB20 |
+|FS_ReadDir                      |0200EB68 |
+|FS_FindDir                      |0200EB84 |
+|FS_ChangeDir                    |0200EBC0 |
+|FS_TellDir                      |0200EC18 |
+|FSi_OnRomReadDone               |0200EC30 |
+|FSi_ReadRomCallback             |0200EC54 |
+|FSi_WriteDummyCallback          |0200EC9C |
+|FSi_RomArchiveProc              |0200ECA4 |
+|FSi_ReadDummyCallback           |0200ED10 |
+|FSi_EmptyArchiveProc            |0200ED18 |
+|FSi_InitRom                     |0200ED20 |
+|FS_SetDefaultDMA                |0200EE68 |
+|FS_TryLoadTable                 |0200EEB8 |
+|FSi_GetOverlayBinarySize        |0200EED8 |
+|FS_ClearOverlayImage            |0200EEF4 |
+|FS_GetOverlayFileID             |0200EF30 |
+|FSi_LoadOverlayInfoCore         |0200EF58 |
+|FS_LoadOverlayInfo              |0200F050 |
+|FS_LoadOverlayImage             |0200F14C |
+|FSi_CompareDigest               |0200F1DC |
+|FS_StartOverlay                 |0200F270 |
+|FS_EndOverlay                   |0200F364 |
+|FS_UnloadOverlayImage           |0200F454 |
+|FS_LoadOverlay                  |0200F464 |
+|FS_UnloadOverlay                |0200F4B8 |
+|MIi_CpuCopy16                   |02013D68 |
+|MI_Copy36B                      |02013D84 |
+|MI_Copy48B                      |02013DA0 |
+|MI_Copy64B                      |02013DC4 |
+|MI_CpuFill8                     |02013DF0 |
+|MI_CpuCopy8                     |02013E84 |
+|MI_SwapWord                     |02013FB4 |
+|MI_Init                         |02014030 |
+|OS_SetIrqCheckFlag              |020143E0 |
+|OSi_GetUnusedThreadId           |02014828 |
+|OSi_InsertLinkToQueue           |02014840 |
+|OSi_RemoveSpecifiedLinkFromQueue|020148EC |
+|OSi_DequeueHead                 |02014940 |
+|OSi_InsertThreadToList          |02014970 |
+|OSi_RemoveThreadFromList        |020149D0 |
+|OS_RescheduleThread             |02014A18 |
+|OS_InitThread                   |02014AE0 |
+|OS_CreateThread                 |02014C28 |
+|OS_ExitThread                   |02014D24 |
+|OSi_ExitThread_ArgSpecified     |02014D44 |
+|OSi_ExitThread                  |02014DA0 |
+|OSi_ExitThread_Destroy          |02014DD8 |
+|OS_JoinThread                   |02014E34 |
+|OS_SleepThread                  |02014E64 |
+|OS_WakeupThread                 |02014EB4 |
+|OS_WakeupThreadDirect           |02014F1C |
+|OS_SetThreadPriority            |02014F88 |
+|OS_Sleep                        |02015030 |
+|OS_SetSwitchThreadCallback      |020150F8 |
+|OSi_IdleThreadProc              |02015120 |
+|OS_DisableScheduler             |02015130 |
+|OS_EnableScheduler              |02015164 |
+|OS_SetThreadDestructor          |02015198 |
+|OS_InitContext                  |020151A0 |
+|OS_SaveContext                  |02015224 |
+|OS_LoadContext                  |02015270 |
+|OS_InitMutex                    |020154D0 |
+|OS_LockMutex                    |020154E8 |
+|OS_UnlockMutex                  |0201556C |
+|OSi_UnlockAllMutex              |020155C8 |
+|OS_TryLockMutex                 |02015604 |
+|OSi_EnqueueTail                 |02015678 |
+|OSi_DequeueItem                 |0201569C |
+|OS_Init                         |020157D0 |
+|OS_AllocFromArenaLo             |02015B64 |
+|OS_AllocFromArenaHi             |02015BD0 |
+|OS_EnableInterrupts             |0201664C |
+|OS_DisableInterrupts            |02016660 |
+|OS_RestoreInterrupts            |02016674 |
+|OS_DisableInterrupts_IrqAndFiq  |0201668C |
+|OS_RestoreInterrupts_IrqAndFiq  |020166A0 |
+|OS_GetCpsrIrq                   |020166B8 |
+|OS_GetProcMode                  |020166C4 |
+|OS_SpinWait                     |020166D0 |
+|OS_Terminate                    |020168F8 |
+|OS_Halt                         |02016908 |
+|PXI_Init                        |02016914 |
+|PXI_SetFifoRecvCallback         |02016A20 |
+|PXIi_SetToFifo                  |02016A90 |
+
+### ARM9 Static Module (arm9.bin)
+
+* 0x20398F4: function(filename) -> s32; returns the file size
+* 0x2039A3C: function(filename) -> BOOL; tests whether the file exists
+* 0x2039FEC: function(filename, buf, ?, ?, ?, ?, ?); start reading a file asynchronously
+* 0x2044950: Foo::function(assetId) -> const char *; return the filename by asset id
+    - assetId = (0x13 << 24) + (songTypeIndex * 1000) + song
+    - songType: { "F", "D", "C", "B", "E", "W" }
+* 0x2054C94: Assets::ctor()
+* 0x20552B4: Assets::function(filename, ?) -> bool; load a file
+* 0x2055478: Assets::function(fileid) -> void *; get the file content by id
+* 0x2055D18: Assets::function(0x14, songId, 0) -> fileid
+    - songId = (songTypeIndex * 1000) + song
+    - songType: { "F", "D", "C", "B", "E", "W" }
+* 0x20637E8: function(mus_data, 0); load MUS file on memory
+* 0x2063828: function(0x7f, 0); start playing the pre-loaded BGM
+* 0x210BA4C: Global instance of the Assets class
+
+### overlay9_0 (overlay for title and menu)
+
+* Overlay Load Address: 0x211F640
+
+* 0x212FEA8: tSnd::playBgm(basename, ?)
+* 0x212FFD0: tSnd::function(basename) -> const char *; make the BGM file path (data/snd/bg/%s.mus)
+* 0x2130030: static version of tSnd::playBgm
+* 0x2131478 (ROM:0xDDE38): "W02", the basename of the title BGM
+* 0x2138D9C: Global instance of tSnd
