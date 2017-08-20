@@ -255,4 +255,5 @@ Alright, I focus to only the sequenced format here.
 * 0x212FFD0: tSnd::function(basename) -> const char *; make the BGM file path (data/snd/bg/%s.mus)
 * 0x2130030: static version of tSnd::playBgm
 * 0x2131478 (ROM:0xDDE38): "W02", the basename of the title BGM
+* 0x2131B08 (ROM:0xDE4C8): "W03", the basename of the menu BGM
 * 0x2138D9C: Global instance of tSnd
