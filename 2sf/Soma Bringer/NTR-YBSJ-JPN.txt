@@ -76,7 +76,7 @@ Therefore, you can extract files by following steps.
 A .MUS file is an archive for SMD (sequence) and SWD (instruments).
 Apparently, the header format looks so easy to guess.
 
-A .SAD file is a streamed sound format. It's an IMA ADPCM. You can play it by vgmstream.
+A .SAD file is a streamed sound format. You can play it by vgmstream.
 
 Alright, I focus to only the sequenced format here.
 
