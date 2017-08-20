@@ -245,6 +245,7 @@ Alright, I focus to only the sequenced format here.
     - songType: { "F", "D", "C", "B", "E", "W" }
 * 0x20637E8: function(mus_data, 0); load MUS file on memory
 * 0x2063828: function(0x7f, 0); start playing the pre-loaded BGM
+* 0x2063A48: function(...); play the pre-loaded? SFX
 * 0x210BA4C: Global instance of the Assets class
 
 ### overlay9_0 (overlay for title and menu)
