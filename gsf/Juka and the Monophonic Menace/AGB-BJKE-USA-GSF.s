@@ -1,3 +1,6 @@
+@ Juka and the Monophonic Menace GSF driver block (non-portable)
+@ written by loveemu <https://github.com/loveemu/psf-drivers>
+
 .text
 .thumb
 .align 2
