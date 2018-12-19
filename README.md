@@ -8,4 +8,4 @@ This repository manages my PSF driver codes.
 See LICENSE.txt about license.
 
 Note that the license applies to my driver codes.
-It doesn't apply any other copyrighted materials.
+It doesn't apply to any other copyrighted materials.
