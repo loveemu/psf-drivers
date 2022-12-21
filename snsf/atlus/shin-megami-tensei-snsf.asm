@@ -3,6 +3,9 @@ check title "DIGITAL DEVIL STORY  "
 lorom
 arch 65816
 
+INIDISP = $2100
+NMITIMEN = $4200
+
 NullInterrupt = $008686
 ExecSoundOp = $0C807A
 
@@ -22,7 +25,13 @@ SNSFMain:
     jsl ExecSoundOp
 
 .end
-    stp
+    ; The STP instruction would be best for use in SNSF, but it freezes SNSF9x.
+    ; We have no choice but to enable interrupts and enter low-power mode with the WAI instruction.
+    jsr InitScreen
+
+..halt
+    wai
+    bra ..halt
 
     fill align 4
 
@@ -30,11 +39,6 @@ SNSFFirstCmd:
     db $44
 SNSFSecondCmd:
     db $40
-
-.end
-    stp
-
-    fill align 4
 
 ; Commands:
 ;    $38 Demon Appears (without FX)
@@ -48,6 +52,21 @@ SNSFSecondCmd:
 ;    $42 Demon Appears
 ;    $43 Demon Appears
 ;    $44 Jakyou
+
+    fill align 4
+
+; The following code is copied from $0FCA7E
+InitScreen:
+  php
+  sep #$20
+  lda #$00
+  sta INIDISP
+  sta $0f43
+  lda #$81
+  sta NMITIMEN
+  sta $0f00
+  plp
+  rts
 
 org $00FFEA : dw NullInterrupt ; Native-mode NMI
 org $00FFEE : dw NullInterrupt ; Native-mode IRQ
