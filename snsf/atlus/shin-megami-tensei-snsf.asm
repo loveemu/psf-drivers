@@ -7,7 +7,8 @@ INIDISP = $2100
 NMITIMEN = $4200
 
 NullInterrupt = $008686
-ExecSoundOp = $0C807A
+SoundTransferDriver = $0C8000
+SoundExecuteOp = $0C807A
 
 ; Remove Atlus logo
 org $008035
@@ -18,11 +19,11 @@ org $008099
 SNSFMain:
     sep #$20
     lda SNSFFirstCmd
-    jsl ExecSoundOp
+    jsl SoundExecuteOp
 
     lda SNSFSecondCmd
     beq .end
-    jsl ExecSoundOp
+    jsl SoundExecuteOp
 
 .end
     ; The STP instruction would be best for use in SNSF, but it freezes SNSF9x.
