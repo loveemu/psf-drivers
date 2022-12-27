@@ -51,6 +51,9 @@ SNSFFirstCmd:
 SNSFSecondCmd:
     db $00 ; $8b Title without intro
 
+; ASM hint:
+; The pointer table for sound data is located at $3C8218 and is referenced from $3C80DD.
+
     fill align 4
 
 InitScreen:
