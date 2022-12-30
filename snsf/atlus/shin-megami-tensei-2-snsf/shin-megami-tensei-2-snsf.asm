@@ -26,6 +26,7 @@ SNSFMain:
 
     jsr InitScreen
     wai
+    wai
 
     sep #$20
     lda SNSFFirstCmd
