@@ -1,0 +1,33 @@
+Custom Robo GX GSF Driver
+=========================
+
+Custom Robo GX uses the most well-known MusicPlayer2000 engine,
+but has the ability to change the playback rate by calling the m4aSoundMode function on its own.
+If this is missed, a song consisting of some streamed audio will play much faster than it should.
+
+Below is a list of major ROM addresses. Symbol names are my own for convenience.
+
+* 0x80000F0: void intr_main(void)
+* 0x8000548: void SoundInitialize(void)
+* 0x800056C: void SoundSetMode(bool lowPlaybackRate)
+* 0x8000588: void SoundStopDriver(void)
+* 0x80005B4: void SoundStartDriver(void)
+* 0x80005D8: void SoundSelectSong(int song)
+* 0x8000634: void SoundSelectSongEx(int player, int song)
+* 0x8000990: void SetupInteruptHandler(void)
+* 0x8000A5C: void Initialize(void)
+* 0x8000AF4: void __noreturn AgbMain(void)
+* 0x8002A38: void m4aSoundVSync(void)
+* 0x8003094: void m4aSoundInit(void)
+* 0x800310C: void m4aSoundMain(void)
+* 0x8003630: void m4aSoundMode(u32 mode)
+* 0x800384C: void m4aMPlayStart(MusicPlayerArea *ma, SongHeader *so)
+
+I have created a driver that calls function 0x800056C to change the playback rate.
+The song number and playback rate can be specified via minigsf block.
+The following is the command used to create the minigsf files.
+
+```
+minigsf -o AGB-ARJJ-JPN-0 AGB-ARJJ-JPN 0x8013f4c =NNNN000000000000 217
+minigsf -o AGB-ARJJ-JPN-1 AGB-ARJJ-JPN 0x8013f4c =NNNN000001000000 217
+```
