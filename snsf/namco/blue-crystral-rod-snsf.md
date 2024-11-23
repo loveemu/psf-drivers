@@ -68,27 +68,22 @@ The game's NMI handler never returns.
 Before most music can be played, the common data block must be transferred.
 Calling $A02A is an easy way to do this.
 
-## Sound thread
+## Sound command (SNES high-level side)
 
-The sound thread monitors the value of $7E:009D and performs processing
-according to the byte code value stored there.
+The sound thread handles command requests for sound.
+Switching the execution context of the virtual thread is probably done by $82CA.
+
+The sound command byte is stored in $9D.
+The sound thread monitors the value and performs processing according to
+the byte code value stored there.
 
 A byte code value of 0xff means that nothing has been requested.
-When the value is 0x80 or higher, the lower 7 bits are simply sent to the APU.
+When the value is 0x80 or higher, the lower 7 bits are simply sent to the APUI01.
 
 Otherwise, it is a combination of complex transfers and playback.
 The function of each code value is hard-coded after $9D1B.
+The jump table for each command is located at $9D2B.
 
-Switching the execution context of the virtual thread is probably done by $82CA.
-
-## Sound command (SNES high-level side)
-
-The command byte is stored in $9D. The code for its interpretation starts around $9D00.
-
-$FF indicates that the command is not set.
-If the command value is $80 or higher, the lower 7 bits are written directly to APUI01.
-
-Commands under $80 are programmed separately and have their jump tables in $9D2B.
 These instructions can load music data and control the start and stop of a song,
 thus sending multiple instructions to the SPC side.
 
