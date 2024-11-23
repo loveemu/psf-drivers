@@ -65,13 +65,14 @@ This one can be used to write your own code for SNSF creation.
 These threads are executed through the VBlank interrupt.
 The game's NMI handler never returns.
 
+Switching the execution context of the virtual thread is done by $82CA.
+
 Before most music can be played, the common data block must be transferred.
 Calling $A02A is an easy way to do this.
 
 ## Sound command (SNES high-level side)
 
 The sound thread handles command requests for sound.
-Switching the execution context of the virtual thread is probably done by $82CA.
 
 The sound command byte is stored in $9D.
 The sound thread monitors the value and performs processing according to
