@@ -80,3 +80,117 @@ Otherwise, it is a combination of complex transfers and playback.
 The function of each code value is hard-coded after $9D1B.
 
 Switching the execution context of the virtual thread is probably done by $82CA.
+
+## Sound command (SNES high-level side)
+
+The command byte is stored in $9D. The code for its interpretation starts around $9D00.
+
+$FF indicates that the command is not set.
+If the command value is $80 or higher, the lower 7 bits are written directly to APUI01.
+
+Commands under $80 are programmed separately and have their jump tables in $9D2B.
+These instructions can load music data and control the start and stop of a song,
+thus sending multiple instructions to the SPC side.
+
+A summary of these instructions is below.
+I have only examined the sections I was interested in.
+
+|Command |Comment|
+|--------|-------|
+|$00     |Common Data Transfer|
+|$01     |ME: Babylim|
+|$02     |Load 5th bank (Hanging Garden), play $32|
+|$03     |Load 5th bank (Hanging Garden), play $33|
+|$04     |ME: Hanging Garden|
+|$05     |play $19|
+|$06     |play $1E|
+|$07     |play $1F|
+|$08     |ME: Storm Mountains|
+|$09     |Load 8th bank, then play $26|
+|$0A     |play $27|
+|$0B     |ME: Ishtar|
+|$0C     |ME: Tower of Druaga|
+|$0D     |ME: Castle Town|
+|$0E     |ME: Sumar Empire|
+|$0F     |ME: Competition|
+|$10     |ME: Underworld|
+|$11     |ME: Field of Niebana (Preloading Required)|
+|$12     |ME: Druaga (Preloading Required)|
+|$13     |ME: Lost Forest (with SE $10?)|
+|$14     |SE: Water Drop (Elburz Cave)|
+|$15     |ME: Ziggurat|
+|$16     |ME: Heaven|
+|$17     |ME: Begining of Story|
+|$18     |ME: Fields of Niebana (Alternative?)|
+|$19     |ME: Begining of Story (No Intro)|
+|$1A     |SE: Rock of the Sky|
+|$1B     |Unknown|
+|$1C     |ME: File Selection|
+|$1D     |ME: Prologue|
+|$1E     |ME: Tower of Druaga (Loading Only?)|
+|$1F     |FX: Fade Out|
+|$20     |FX: Stop Song|
+|$21     |ME: Opening (Loading Only?)|
+|$22     |ME: Opening (?)|
+|$23     |0|
+|$24     |0|
+|$25     |0|
+|$26     |Direct Send|
+|$27     |Direct Send|
+|$28     |Direct Send|
+|$29     |Direct Send|
+|$2A     |Direct Send|
+|$2B     |Direct Send|
+|$2C     |Direct Send|
+|$2D     |Direct Send|
+|$2E     |Direct Send|
+|$2F     |Direct Send|
+|$30     |Direct Send|
+|$31     |Direct Send|
+|$32     |Direct Send|
+|$33     |Direct Send|
+|$34     |Direct Send|
+|$35     |Direct Send|
+|$36     |Direct Send|
+|$37     |Direct Send|
+|$38     |Direct Send|
+|$39     |Direct Send|
+|$3A     |Direct Send|
+|$3B     |Direct Send|
+|$3C     |Direct Send|
+|$3D     |Direct Send|
+|$3E     |Direct Send|
+|$3F     |Direct Send|
+|$40     |Unknown|
+|$41     |ME: Epilogue (No Intro)|
+|$42     |ME: Epilogue|
+|$43     |Unknown|
+|$44     |Unknown|
+|$45     |Unknown|
+|$46     |Unknown|
+|$47     |Unknown|
+|$48     |Unknown|
+|$49     |Unknown|
+|$4A     |Unknown|
+|$4B     |Unknown|
+|$4C     |Unknown|
+|$4D     |Unknown|
+|$4E     |Unknown|
+|$4F     |NOP|
+|$50     |Unknown|
+|$51     |Unknown|
+|$52     |NOP|
+|$53     |NOP|
+|$54     |NOP|
+|$55     |NOP|
+|$56     |NOP|
+|$57     |NOP|
+|$58     |NOP|
+|$59     |NOP|
+|$5A     |NOP|
+|$5B     |NOP|
+|$5C     |NOP|
+|$5D     |NOP|
+|$5E     |NOP|
+|$5F     |NOP|
+|$60     |Unknown|

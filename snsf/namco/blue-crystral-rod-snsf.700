@@ -1,0 +1,17 @@
+	m	#0	w1
+:001
+	; stop sound
+	m	#$FF	1
+	m	#$82	0
+	w	32768
+
+	; play ME/SE
+	m	w1	1
+	m	#1	0
+	w	2097152
+
+	; next song
+	a	#1	w1
+	bra	001
+
+	e
