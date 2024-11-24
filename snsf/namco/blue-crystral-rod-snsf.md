@@ -231,6 +231,6 @@ loc_008363:
 	JSR $82CA       ; switch to next virtual thread (yield)
 	BRA loc_008363
 
-loc_00836D:
+loc_00836C:
 	db $ff,$ff,$ff,$ff
 ```
