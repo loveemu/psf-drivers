@@ -198,7 +198,7 @@ loc_00833A:
 	; load common sound data
 	JSR $A02A
 
-	; param 1: sound data index to load (to disable, use $ff)
+	; param 1: sound data offset (multiple of 3) to load (to disable, use $ff)
 	LDA #$00
 	XBA
 	LDA $836C
@@ -210,7 +210,7 @@ loc_00833A:
 	STX $B4
 	JSR $A17D
 
-	; param 2: sound data index to load (to disable, use the same value as param 1)
+	; param 2: sound data offset (multiple of 3) to load (to disable, use the same value as param 1)
 	LDA #$00
 	XBA
 	LDA $836D
