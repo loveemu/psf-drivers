@@ -190,3 +190,47 @@ I have only examined the sections I was interested in.
 |$5E     |NOP|
 |$5F     |NOP|
 |$60     |Unknown|
+
+## Sound driver code
+
+```asm
+loc_00833A:
+	; load common sound data
+	JSR $A02A
+
+	; param 1: sound data index to load (to disable, use $ff)
+	LDA #$00
+	XBA
+	LDA $836C
+	CMP #$FF
+	BEQ loc_00835E
+
+	; transfer 1
+	TAX
+	STX $B4
+	JSR $A17D
+
+	; param 2: sound data index to load (to disable, use the same value as param 1)
+	LDA #$00
+	XBA
+	LDA $836D
+	CMP $836C
+	BEQ loc_00835E
+
+	; transfer 2
+	TAX
+	STX $B6
+	JSR $A17D
+
+loc_00835E:
+	; param 3: command byte (to disable, use $ff)
+	LDA $836E
+	STA $9D
+
+loc_008363:
+	JSR $82CA       ; switch to next virtual thread (yield)
+	BRA loc_008363
+
+loc_00836D:
+	db $ff,$ff,$ff,$ff
+```
