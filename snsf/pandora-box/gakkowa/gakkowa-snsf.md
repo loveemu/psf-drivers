@@ -17,7 +17,7 @@ The following is an excerpt from the startup routine located at $C0011E.
 ```asm
     SEP #$20    ; 8-bit accumulator
     LDA #1
-    JSR $2C1E   ; set persistent sample IDs
+    JSR $2C1E   ; set persistent sample IDs (1:on 0:off)
     JSR $55C9   ; transfer and start sound driver
     JSR $2BA9   ; transfer all SFXs
 
@@ -25,23 +25,37 @@ The following is an excerpt from the startup routine located at $C0011E.
     JSR $2BCD   ; commit stereo/mono
 ```
 
-Let's modify the second half.
-First, change the code to set the output to stereo, and then play the music and/or SFX.
+Here is my SNSF driver code.
+Disabling the preloading of SFX samples is necessary to play the title theme.
 
 ```
+    REP #$20
+    LDA #$FF42  ; low-byte: BGM #, high-byte: SFX #
+    PHA
+
+    SEP #$20    ; 8-bit accumulator
+    LDA 2, S    ; SFX #
+    CMP #$FF
+    BEQ noload  ; no SFX -> no preload
+    LDA #1
+    BRA init
+
+noload:
+    LDA #0
+
+init:
+    JSR $2C1E   ; set persistent sample IDs (1:on 0:off)
+    JSR $55C9   ; transfer and start sound driver
+    JSR $2BA9   ; transfer all SFXs
+
     LDA #1      ; stereo
     STA $0B3A
     JSR $2BCD   ; commit stereo/mono
 
-    REP #$20
-    LDA #$FF42
-    PHA
-    SEP #$20
-
-    LDA 1, S
+    LDA 1, S    ; BGM #
     JSR $2B85   ; transfer and start BGM (0: silence)
 
-    LDA 2, S
+    LDA 2, S    ; SFX #
     CMP #$FF
     BEQ loaded  ; skip if $FF
     JSR $58AC   ; play SFX
