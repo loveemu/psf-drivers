@@ -50,6 +50,9 @@ Therefore, I will write the SNSF driver code starting from that point.
     PHA
     SEP #$20    ; 8-bit accumulator
 
+    LDA #$FF
+    STA $012A   ; previous BGM #
+
     LDA 1, S    ; BGM #
     JSR $7A41   ; transfer and start BGM (0: silence)
 

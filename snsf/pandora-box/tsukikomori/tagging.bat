@@ -1,0 +1,50 @@
+@echo off
+@rem chcp 932
+
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="真田　泰明" SHVC-A7MJ-JPN-0010.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="前田　和子" SHVC-A7MJ-JPN-0020.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="山崎　哲夫" SHVC-A7MJ-JPN-0022.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="鈴木由香里" SHVC-A7MJ-JPN-0016.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="藤村　正美" SHVC-A7MJ-JPN-0013.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="前田　良夫" SHVC-A7MJ-JPN-0019.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="前田　葉子" SHVC-A7MJ-JPN-0083.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="風間" SHVC-A7MJ-JPN-0012.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="魔影" SHVC-A7MJ-JPN-0000.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="取縄" SHVC-A7MJ-JPN-0002.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="予兆" SHVC-A7MJ-JPN-0003.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="懐疑" SHVC-A7MJ-JPN-0004.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="焦燥" SHVC-A7MJ-JPN-0005.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="招来" SHVC-A7MJ-JPN-0006.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="悲嘆" SHVC-A7MJ-JPN-0008.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="異国" SHVC-A7MJ-JPN-0011.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="止水" SHVC-A7MJ-JPN-0014.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="猛邪" SHVC-A7MJ-JPN-0018.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="恐怖" SHVC-A7MJ-JPN-0024.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="残照" SHVC-A7MJ-JPN-0047.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="序曲" SHVC-A7MJ-JPN-0048.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="安穏" SHVC-A7MJ-JPN-0050.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="追撃" SHVC-A7MJ-JPN-0052.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="静寂" SHVC-A7MJ-JPN-0055.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="婚儀" SHVC-A7MJ-JPN-0056.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="暗転" SHVC-A7MJ-JPN-0058.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="来訪" SHVC-A7MJ-JPN-0062.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="洋館" SHVC-A7MJ-JPN-0063.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="怪奇" SHVC-A7MJ-JPN-0076.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="破綻" SHVC-A7MJ-JPN-0077.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="幽霊" SHVC-A7MJ-JPN-0079.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="迎闇" SHVC-A7MJ-JPN-0093.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="虚無" SHVC-A7MJ-JPN-0096.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="軟風" SHVC-A7MJ-JPN-0103.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="夢幻" SHVC-A7MJ-JPN-0120.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="探求" SHVC-A7MJ-JPN-0114.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="律浸" SHVC-A7MJ-JPN-0116.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="緊迫" SHVC-A7MJ-JPN-0118.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="死宴" SHVC-A7MJ-JPN-0121.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="斜陽" SHVC-A7MJ-JPN-0123.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="追憶" SHVC-A7MJ-JPN-0124.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="未使用曲1" SHVC-A7MJ-JPN-0086.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="未使用曲2" SHVC-A7MJ-JPN-0105.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="追想" SHVC-A7MJ-JPN-0104.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="去来" SHVC-A7MJ-JPN-0110.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="流石" SHVC-A7MJ-JPN-0102.minisnsf
+psfpoint -utf8=1 -artist="Takashi Horiguchi" -copyright="Pandora Box, Banpresto" -game="Tsukikomori" -year=1996 -title="（曲名不明）" -comment="由香里七話などで視聴可能" SHVC-A7MJ-JPN-0101.minisnsf
