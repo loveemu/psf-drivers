@@ -43,12 +43,14 @@ Therefore, I will write the SNSF driver code starting from that point.
     ; $9CE9: sound driver initialization (finished)
     ; $9F6A: sound driver soft reset (finished)
     ; $9F77: transfer SFX data (finished)
-    ; $27E9: reset RAM data (finished)
+    ; $27E9: reset RAM data (finished) - this function will erase initial sound settings!
 
     REP #$20
     LDA #$112F  ; low-byte: BGM #, high-byte: SFX # (use $xx35 for SFX without BGM)
     PHA
     SEP #$20    ; 8-bit accumulator
+
+    JSR $9D19   ; switch the audio back to stereo
 
     LDA #$FF
     STA $012A   ; previous BGM #
