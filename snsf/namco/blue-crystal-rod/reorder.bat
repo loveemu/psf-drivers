@@ -1,5 +1,4 @@
 @echo off
-rem https://vgmdb.net/album/148650
 
 move SHVC-NU-0033.minisnsf "01 The Destiny of Gilgamesh.minisnsf"
 move SHVC-NU-0029.minisnsf "02 Prologue.minisnsf"
@@ -19,7 +18,7 @@ move SHVC-NU-SFX-bank04-51.minisnsf "15 The Cave of Elburz - Battle Won.minisnsf
 move SHVC-NU-SFX-bank04-52.minisnsf "16 The Cave of Elburz - Battle Lost.minisnsf"
 move SHVC-NU-SFX-bank04-53.minisnsf "17 YOU ZAPPED TO....minisnsf"
 move SHVC-NU-SFX-bank08-38.minisnsf "18 Harbor.minisnsf"
-rem 19 Voyage
+move SHVC-NU-SFX-bank08-39.minisnsf "19 Voyage.minisnsf"
 move SHVC-NU-0013.minisnsf "20 Sumar.minisnsf"
 move SHVC-NU-0014.minisnsf "21 Sumar Castle.minisnsf"
 move SHVC-NU-0015.minisnsf "22 Tournament.minisnsf"
@@ -34,10 +33,9 @@ move SHVC-NU-0018-1.minisnsf "30 Savage Druaga.minisnsf"
 move SHVC-NU-0026.minisnsf "31 To Heaven.minisnsf"
 move SHVC-NU-0022.minisnsf "32 Heaven.minisnsf"
 move SHVC-NU-0066.minisnsf "33 Epilogue.minisnsf"
-move SHVC-NU-0028.minisnsf "34 Miracle of Two.minisnsf"
+move SHVC-NU-0028.minisnsf "34 Miraculous Path of Two.minisnsf"
 move SHVC-NU-0065.minisnsf "35 Epilogue (No Intro Ver.).minisnsf"
 
-rem Based on uncertain assumptions:
 move SHVC-NU-0014-54.minisnsf "36 Unused Music 1.minisnsf"
 move SHVC-NU-0029-02.minisnsf "37 Unused Music 2.minisnsf"
 move SHVC-NU-0025.minisnsf "38 Unused Music 3.minisnsf"
